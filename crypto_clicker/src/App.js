@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import {Button, Icon} from 'react-materialize'
+
+
 class Login extends Component {
 	constructor(props) {
     super(props);
@@ -46,6 +49,9 @@ class Login extends Component {
         </label>
         <input type="submit" value="Login" />
       </form>
+	  <Button waves='light'>
+		<Icon>thumb_up</Icon>
+	</Button>
 	  </div>
     );
   }
