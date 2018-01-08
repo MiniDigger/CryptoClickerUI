@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import {Button, Icon} from 'react-materialize'
+import {Button, Icon, Col, Input, Row} from 'react-materialize'
+import Register from './Register';
+import ReactDOM from 'react-dom';
 
 
 class Login extends Component {
@@ -28,12 +30,16 @@ class Login extends Component {
     alert('An email was submitted: ' + this.state.value + " " + this.state.pw);
     event.preventDefault();
   }
+  
+  goToRegister(){
+	  ReactDOM.render(<Register />, document.getElementById('root'));
+  }
 
   render() {
     return (
 	  <div>
 		<div className="App">
-        <header className="App-header">
+        <header style={{height: 200}} className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to CryptoClicker</h1>
         </header>
@@ -41,18 +47,25 @@ class Login extends Component {
           To get started, <b>login</b> or <b>register</b> if you don't have an account.
         </p>
       </div>
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Email:
-          <input type="text" value={this.state.value} onChange={this.handleChangeEmail} />
-		  <input type="password" value={this.state.pw} onChange={this.handleChangePassword}/>
-        </label>
-        <input type="submit" value="Login" />
-      </form>
-	  <Button waves='light'>EDIT ME<Icon left>save</Icon></Button>
+	  <div class="row">
+	<Col offset="s4" s={8}>
+	<Input type="email" s={6} label="Email" value={this.state.value} onChange={this.handleChangeEmail}><Icon>email</Icon></Input>
+	</Col>
+	<Col offset="s4" s={8}>
+    <Input type="password" s={6} label="Password" value={this.state.pw} onChange={this.handleChangePassword}><Icon>lock</Icon></Input>
+	</Col>
+	<Col offset="s4">
+	<Button type="submit" onClick={this.handleSubmit}>Login</Button>
+	<span> </span>
+	<Button onClick={this.goToRegister}>Register</Button>
+	</Col>
+	
+	  </div>
 	  </div>
     );
   }
 }
+
+
 
 export default Login;
