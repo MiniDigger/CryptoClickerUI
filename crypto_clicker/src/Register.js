@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './Bitcoin.svg';
 import './App.css';
 
 import {Button, Icon, Col, Input, Row} from 'react-materialize'
