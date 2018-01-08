@@ -49,9 +49,7 @@ class Login extends Component {
         </label>
         <input type="submit" value="Login" />
       </form>
-	  <Button waves='light'>
-		<Icon>thumb_up</Icon>
-	</Button>
+	  <Button waves='light'>EDIT ME<Icon left>save</Icon></Button>
 	  </div>
     );
   }
