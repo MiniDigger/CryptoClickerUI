@@ -4,6 +4,7 @@ import './App.css';
 
 import {Button, Icon, Col, Input, Row} from 'react-materialize'
 import Register from './Register';
+import Game from './Game';
 import ReactDOM from 'react-dom';
 
 
@@ -29,6 +30,7 @@ class Login extends Component {
   handleSubmit(event) {
     alert('An email was submitted: ' + this.state.value + " " + this.state.pw);
     event.preventDefault();
+	ReactDOM.render(<Game />, document.getElementById('root'));
   }
   
   goToRegister(){
@@ -40,7 +42,7 @@ class Login extends Component {
 	  <div>
 		<div className="App">
         <header style={{height: 200}} className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <a href="http://localhost:3000/"><img src={logo} className="App-logo" alt="logo"/></a>
           <h1 className="App-title">Welcome to CryptoClicker</h1>
         </header>
         <p className="App-intro">
