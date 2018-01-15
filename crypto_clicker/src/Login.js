@@ -20,7 +20,7 @@ class Login extends Component {
   }
 
   handleChangeEmail(event) {
-    this.setState({value: event.target.value});
+    this.setState({email: event.target.value});
   }
   
   handleChangePassword(event) {
@@ -28,9 +28,26 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
-    alert('An email was submitted: ' + this.state.value + " " + this.state.pw);
-    event.preventDefault();
-	ReactDOM.render(<Game />, document.getElementById('root'));
+	fetch("https://bender.minidigger.me:4567/login", {
+		method: 'POST',
+		body: JSON.stringify({
+			email: this.state.email,
+			pw: this.state.pw,
+		})
+	})
+      .then(res => res.json())
+      .then(
+        (result) => {
+          ReactDOM.render(<Game />, document.getElementById('root'));
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          alert('Email or password invalid');
+        }
+      )
+	//ReactDOM.render(<Game />, document.getElementById('root'));
   }
   
   goToRegister(){
@@ -51,7 +68,7 @@ class Login extends Component {
       </div>
 	  <div class="row">
 	<Col offset="s4" s={8}>
-	<Input type="email" s={6} label="Email" value={this.state.value} onChange={this.handleChangeEmail}><Icon>email</Icon></Input>
+	<Input type="email" s={6} label="Email" value={this.state.email} onChange={this.handleChangeEmail}><Icon>email</Icon></Input>
 	</Col>
 	<Col offset="s4" s={8}>
     <Input type="password" s={6} label="Password" value={this.state.pw} onChange={this.handleChangePassword}><Icon>lock</Icon></Input>

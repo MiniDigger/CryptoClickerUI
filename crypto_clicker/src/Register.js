@@ -3,6 +3,8 @@ import logo from './Bitcoin.svg';
 import './App.css';
 
 import {Button, Icon, Col, Input, Row, MediaBox} from 'react-materialize'
+import Login from './Login';
+import ReactDOM from 'react-dom';
 
 export default class Register extends Component {
 	constructor(props) {
@@ -20,7 +22,7 @@ export default class Register extends Component {
   }
 
   handleChangeEmail(event) {
-    this.setState({value: event.target.value});
+    this.setState({email: event.target.value});
   }
   
   handleChangeUsername(event) {
@@ -40,8 +42,29 @@ export default class Register extends Component {
 		alert('Password and confirmed password are not equal');
 		return;
 	}
-    alert('An email was submitted: ' + this.state.value + " " + this.state.pw);
-    event.preventDefault();
+	fetch("https://bender.minidigger.me:4567/register", {
+		method: 'POST',
+		body: JSON.stringify({
+			name: this.state.username,
+			email: this.state.email,
+			pw: this.state.pw,
+			coin: 'Bitcoin',
+		})
+	})
+      .then(res => res.json())
+      .then(
+        (result) => {
+          ReactDOM.render(<Login />, document.getElementById('root'));
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          alert('Username is already used');
+        }
+      )
+  
+    //event.preventDefault();
   }
 
   render() {
@@ -58,7 +81,7 @@ export default class Register extends Component {
       </div>
 	  <div class="row">
 	<Col offset="s4" s={8}>
-	<Input type="email" s={6} label="Email" value={this.state.value} onChange={this.handleChangeEmail}><Icon>email</Icon></Input>
+	<Input type="email" s={6} label="Email" value={this.state.email} onChange={this.handleChangeEmail}><Icon>email</Icon></Input>
 	</Col>
 	<Col offset="s4" s={8}>
 	<Input type="text" s={6} label="Username" value={this.state.username} onChange={this.handleChangeUsername}><Icon>account_circle</Icon></Input>
