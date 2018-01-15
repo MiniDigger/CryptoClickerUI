@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './Bitcoin.svg';
 import './App.css';
 
-import {Button, Icon, Col, Input, Row} from 'react-materialize'
+import {Button, Icon, Col, Input, Row, MediaBox} from 'react-materialize'
 
 export default class Register extends Component {
 	constructor(props) {
@@ -10,15 +10,21 @@ export default class Register extends Component {
     this.state = {email: ''};
 	this.state = {pw: ''};
 	this.state = {pwConfirm: ''};
+	this.state = {username: ''};
 
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
 	this.handleChangePassword = this.handleChangePassword.bind(this);
 	this.handleChangePasswordConfirm = this.handleChangePasswordConfirm.bind(this);
+	this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChangeEmail(event) {
     this.setState({value: event.target.value});
+  }
+  
+  handleChangeUsername(event) {
+	  this.setState({username: event.target.value});
   }
   
   handleChangePassword(event) {
@@ -55,6 +61,9 @@ export default class Register extends Component {
 	<Input type="email" s={6} label="Email" value={this.state.value} onChange={this.handleChangeEmail}><Icon>email</Icon></Input>
 	</Col>
 	<Col offset="s4" s={8}>
+	<Input type="text" s={6} label="Username" value={this.state.username} onChange={this.handleChangeUsername}><Icon>account_circle</Icon></Input>
+	</Col>
+	<Col offset="s4" s={8}>
     <Input type="password" s={6} label="Password" value={this.state.pw} onChange={this.handleChangePassword}><Icon>lock</Icon></Input>
 	</Col>
 	<Col offset="s4" s={8}>
@@ -63,6 +72,7 @@ export default class Register extends Component {
 	<Col offset="s4">
 	<Button type="submit" onClick={this.handleSubmit}>Register</Button>
 	</Col>
+	
 	
 	  </div>
 	  </div>
