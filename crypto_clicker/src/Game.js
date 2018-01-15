@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import logo from './Bitcoin.svg';
 
-import {Button, Icon, Col, Input, Row} from 'react-materialize'
+import {Button, Icon, Col, Input, Row, Tabs, Tab} from 'react-materialize'
 import ReactDOM from 'react-dom';
 
 
@@ -14,7 +14,7 @@ class Game extends Component {
   render() {
 	  var colStyle={
 		  borderRight: 'solid 5px'
-	  }
+	  };
 	  var divStyle={
 		  height: '100vh',
 		  position: 'relative'
@@ -23,7 +23,11 @@ class Game extends Component {
 		margin: 'auto', 
 		position: 'absolute', 
 		top: 0, left: 0, right: 0, bottom: 0
-	  }
+	  };
+	  var tabsStyle={
+		color: 'black',
+		marginTop: '10px'		
+	  };
     return (
 	  <div>
 		<Row>
@@ -39,7 +43,12 @@ class Game extends Component {
 			</Col>
 			<Col s={3}>
 				<div style={divStyle}>
-					
+					<div style={{marginTop: '10px'}}>
+						<Tabs className='z-depth-1 black' style={tabsStyle}>
+							<Tab title="Generatoren" active>Test 1</Tab>
+							<Tab title="Shop">Test 2</Tab>
+						</Tabs>
+					</div>
 				</div>
 			</Col>
 		</Row>
