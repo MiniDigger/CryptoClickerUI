@@ -74,19 +74,19 @@ class Game extends Component {
 				</div>
 				<div id="generatoren">
 					<Col m={12}>
-						<Card className='small horizontal' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
+						<Card className='small horizontal blue-grey lighten-5' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
 							I am a very simple card.
 						</Card>
-						<Card className='small horizontal' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
+						<Card className='small horizontal blue-grey lighten-5' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
 							I am a very simple card.
 						</Card>
-						<Card className='small horizontal' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
+						<Card className='small horizontal blue-grey lighten-5' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
 							I am a very simple card.
 						</Card>
-						<Card className='small horizontal' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
+						<Card className='small horizontal blue-grey lighten-5' style={{filter: 'opacity(30%)'}} header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
 							I am a very simple card.
 						</Card>
-						<Card className='small horizontal' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
+						<Card className='small horizontal blue-grey lighten-5' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
 							I am a very simple card.
 						</Card>
 					</Col>
