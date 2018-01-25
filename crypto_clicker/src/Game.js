@@ -13,7 +13,8 @@ class Game extends Component {
 
   render() {
 	  var colStyle={
-		  borderRight: 'solid 5px'
+		  borderRight: 'solid 5px black',
+		  padding: '0px'
 	  };
 	  var divStyle={
 		  height: '100vh',
@@ -32,22 +33,45 @@ class Game extends Component {
 	  <div>
 		<Row>
 			<Col s={3} style={colStyle}>
-				<div style={divStyle}>
+			<div style={divStyle}>
+					<div class="col s12" style={{padding: "0px"}}>
+						<ul class="tabs z-depth-1 black" style={{display: "inline-grid"}}>
+							<li class="tab col" style={{margin: "auto"}}>
+								<a class="active" href="#crypto" style={{color:"white"}}></a>
+							</li>
+							<div class="indicator" style={{right: "279px", left: "0px", backgroundColor:"black"}}></div>
+						</ul>
+					</div>
+					<div style={divStyle} id="crypto">
 					<img style={imgStyle} src={logo} className="App-logo" alt="logo"/>
 				</div>
+			</div>
+				
 			</Col>
 			<Col s={6} style={colStyle}>
 				<div style={divStyle}>
-					
+					<div class="col s12" style={{padding: "0px"}}>
+						<ul class="tabs z-depth-1 black" style={{display: "inline-grid"}}>
+							<li class="tab col" style={{margin: "auto"}}>
+								<a class="active" style={{color:"white"}}>Highscore</a>
+							</li>
+							<div class="indicator" style={{right: "279px", left: "0px", backgroundColor:"white"}}></div>
+						</ul>
+					</div>
 				</div>
 			</Col>
-			<Col s={3}>
+			<Col s={3} style ={{padding: "0px"}}>
 				<div style={divStyle}>
-					<div style={{marginTop: '10px'}}>
-						<Tabs className='z-depth-1 black' style={tabsStyle}>
-							<Tab title="Generatoren" active>Test 1</Tab>
-							<Tab title="Shop">Test 2</Tab>
-						</Tabs>
+					<div class="col s12" style={{padding: "0px"}}>
+						<ul class="tabs z-depth-1 black">
+							<li class="tab col">
+								<a href="#tab_00" class="active" style={{color:"white"}}>Generatoren</a>
+							</li>
+							<li class="tab col">
+								<a href="#tab_01" class="" style={{color:"white"}}>Shop</a>
+							</li>
+							<div class="indicator" style={{right: "279px", left: "0px", backgroundColor:"white"}}></div>
+						</ul>
 					</div>
 				</div>
 			</Col>
