@@ -1,0 +1,26 @@
+[
+  {
+    "id": 0,
+    "name": "Graphic card",
+    "level": 0,
+    "cost": 100.0,
+    "producePerSecond": 0.0,
+    "nextLevelProducePerSecond": 1.0
+  },
+  {
+    "id": 1,
+    "name": "ASIC",
+    "level": 0,
+    "cost": 10000.0,
+    "producePerSecond": 0.0,
+    "nextLevelProducePerSecond": 100.0
+  },
+  {
+    "id": 2,
+    "name": "Server Farm",
+    "level": 0,
+    "cost": 1000000.0,
+    "producePerSecond": 0.0,
+    "nextLevelProducePerSecond": 10000.0
+  }
+]
