@@ -11,13 +11,14 @@ class Game extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-        data: []
+        data: [],
+        gen: []
     }
   }
 	componentDidMount() {
 		fetch("https://api.myjson.com/bins/qzjix", {
 		method: 'GET'
-	})
+		})
       .then(res => res.json())
       .then(
         (result) => {
@@ -27,10 +28,24 @@ class Game extends Component {
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
         (error) => {
-          alert('Dont know');
+          alert('Highscore cannot be loaded');
         }
       )
-    
+    fetch("https://api.myjson.com/bins/fkg55", {
+		method: 'GET'
+		})
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({gen: result});
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          alert('Generators cannot be loaded');
+        }
+      )
   }
 
   render() {
@@ -109,21 +124,16 @@ class Game extends Component {
 				</div>
 				<div id="generatoren">
 					<Col m={12}>
-						<Card className='small horizontal blue-grey lighten-5' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
-							I am a very simple card.
+					{this.state.gen.map(function(item, key) {
+             
+               return (
+                  <Card className='small horizontal blue-grey lighten-5' header={<CardTitle key={item.id} image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key={item.id} floating tiny className='black' waves='light' icon='add'/>]}>
+							{item.name}<br/>Level: {item.level}<br/>Cost: {item.cost}<br/>pps: {item.producePerSecond}<br/>nlpps: {item.nextLevelProducePerSecond}
 						</Card>
-						<Card className='small horizontal blue-grey lighten-5' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
-							I am a very simple card.
-						</Card>
-						<Card className='small horizontal blue-grey lighten-5' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
-							I am a very simple card.
-						</Card>
-						<Card className='small horizontal blue-grey lighten-5' style={{filter: 'opacity(30%)'}} header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
-							I am a very simple card.
-						</Card>
-						<Card className='small horizontal blue-grey lighten-5' header={<CardTitle key='1' image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key='1' floating large className='red' waves='light' icon='add'/>]}>
-							I am a very simple card.
-						</Card>
+                )
+             
+             })}
+						
 					</Col>
 				</div>
 				<div id="upgrades">
