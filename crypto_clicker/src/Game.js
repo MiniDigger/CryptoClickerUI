@@ -3,7 +3,7 @@ import './App.css';
 import logo from './Bitcoin.svg';
 import gpu from './gpu.png';
 
-import {Button, Icon, Col, Input, Row, Tabs, Tab, Card, CardTitle, Table} from 'react-materialize'
+import {Button, Icon, Col, Input, Row, Tabs, Tab, Card, CardTitle, Table, Pagination} from 'react-materialize'
 import ReactDOM from 'react-dom';
 
 
@@ -12,8 +12,11 @@ class Game extends Component {
     super(props);
     this.state = {
         data: [],
-        gen: []
+        gen: [],
+        page: 1,
+        entriesPerPage: 10
     }
+    this.setPage = this.setPage.bind(this);
   }
 	componentDidMount() {
 		fetch("https://api.myjson.com/bins/qzjix", {
@@ -46,6 +49,37 @@ class Game extends Component {
           alert('Generators cannot be loaded');
         }
       )
+  }
+  
+  setPage(i) {
+  	console.log(i)
+	this.setState(prevState => ({
+      page: i
+    }));
+}
+  
+  getTable() {
+  	if (this.state.page===0) return (<div/>);
+  	var start=(this.state.page-1)*this.state.entriesPerPage
+  	var end=start+this.state.entriesPerPage
+  	if (end>this.state.data.length) end=this.state.data.length
+  	console.log(start+" "+end)
+  	return (
+			<Table striped centered id="highscore">
+				<thead> <tr> <th>#</th> <th>Name</th> <th>Crypto per Second</th></tr> </thead>
+				<tbody>
+					{this.state.data.slice(start,end).map(function(item, key) {
+						return (
+							<tr key = {key}>
+								<td>{item.rank}</td>
+								<td>{item.name}</td>
+								<td>{item.cryptopersecond}</td>
+							</tr>
+						)
+					})}
+				</tbody>
+			</Table>
+		);
   }
 
   render() {
@@ -80,6 +114,8 @@ class Game extends Component {
 					</ul>
 				</div>
 				<div style={divStyle} id="crypto">
+					<p className='center-align'><h5>test</h5></p>
+					<p className='center-align'>test2</p>
 					<img style={imgStyle} src={logo} className="App-logo" alt="logo"/>
 				</div>
 			</Col>
@@ -87,39 +123,26 @@ class Game extends Component {
 				<div className="col s12" style={{padding: "0px"}}>
 					<ul className="tabs z-depth-1 black" style={{display: "inline-grid"}}>
 						<li className="tab col" style={{margin: "auto"}}>
-							<a className="active" href="#highscore" style={{color:"white"}}>Highscore</a>
+							<a className="active" href="#highscore" style={{color:"#F7931A"}}>Highscore</a>
 						</li>
-						<div className="indicator" style={{right: "279px", left: "0px", backgroundColor:"white"}}></div>
+						<div className="indicator" style={{right: "279px", left: "0px", backgroundColor:"#F7931A"}}></div>
 					</ul>
 				</div>
-				<Table striped centered id="highscore">
-					<thead> <tr> <th>#</th> <th>Name</th> <th>Crypto per Second</th></tr> </thead>
-      <tbody>{this.state.data.map(function(item, key) {
-             
-               return (
-                  <tr key = {key}>
-                      <td>{item.rank}</td>
-                      <td>{item.name}</td>
-                      <td>{item.cryptopersecond}</td>
-                  </tr>
-                )
-             
-             })}</tbody>
-       </Table>
 				<div style={divStyle} id="tab_00">
-					
+					{this.getTable()}
+        	<Pagination items={parseInt((this.state.data.length-1)/this.state.entriesPerPage)+1} activePage={1} maxButtons={8} onSelect={this.setPage}/>
 				</div>
 			</Col>
 			<Col s={3} style ={{padding: "0px"}}>
 				<div className="col s12" style={{padding: "0px"}}>
 					<ul className="tabs z-depth-1 black">
 						<li className="tab col">
-							<a href="#generatoren" className="active" style={{color:"white"}}>Generatoren</a>
+							<a href="#generatoren" className="active" style={{color:"#F7931A"}}>Generatoren</a>
 						</li>
 						<li className="tab col">
-							<a href="#upgrades" className="" style={{color:"white"}}>Upgrades</a>
+							<a href="#upgrades" className="" style={{color:"#F7931A"}}>Upgrades</a>
 						</li>
-						<div className="indicator" style={{right: "279px", left: "0px", backgroundColor:"white"}}></div>
+						<div className="indicator" style={{right: "279px", left: "0px", backgroundColor:"#F7931A"}}></div>
 					</ul>
 				</div>
 				<div id="generatoren">
@@ -127,7 +150,8 @@ class Game extends Component {
 					{this.state.gen.map(function(item, key) {
              
                return (
-                  <Card className='small horizontal blue-grey lighten-5' header={<CardTitle key={item.id} image={gpu} src={gpu} style={{padding:'10px'}}/>} actions={[<Button key={item.id} floating tiny className='black' waves='light' icon='add'/>]}>
+                  <Card className='small horizontal blue-grey lighten-5' header={<CardTitle key={item.id} image={gpu} src={gpu} style={{padding:'10px'}}/>} 
+                  actions={[<Button key={item.id} floating tiny style={{backgroundColor: '#F7931A'}} waves='light' icon='add'/>]}>
 							{item.name}<br/>Level: {item.level}<br/>Cost: {item.cost}<br/>pps: {item.producePerSecond}<br/>nlpps: {item.nextLevelProducePerSecond}
 						</Card>
                 )
