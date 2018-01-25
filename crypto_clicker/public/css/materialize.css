@@ -4538,7 +4538,7 @@ small {
 
 .card.small .card-content, .card.medium .card-content, .card.large .card-content {
   max-height: 100%;
-  overflow: hidden;
+  overflow: inital;
 }
 
 .card.small .card-action, .card.medium .card-action, .card.large .card-action {
@@ -4556,7 +4556,7 @@ small {
 }
 
 .card.small {
-  height: 100px;
+  height: 160px;
 }
 
 .card.medium {
@@ -4669,7 +4669,7 @@ small {
   position: relative;
   background-color: inherit;
   border-top: 1px solid rgba(160, 160, 160, 0.2);
-  padding: 16px 24px;
+  padding-top: 16px;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
