@@ -68,7 +68,6 @@ class Game extends Component {
   }
   
   setPage(i) {
-  	console.log(i)
 	this.setState(prevState => ({
       page: i
     }));
@@ -79,10 +78,9 @@ class Game extends Component {
   	var start=(this.state.page-1)*this.state.entriesPerPage
   	var end=start+this.state.entriesPerPage
   	if (end>this.state.data.length) end=this.state.data.length
-  	console.log(start+" "+end)
   	return (
 			<Table striped centered id="highscore">
-				<thead> <tr> <th>#</th> <th>Name</th> <th>Crypto per Second</th></tr> </thead>
+				<thead><tr><th>#</th><th>Name</th><th>Crypto per Second</th></tr></thead>
 				<tbody>
 					{this.state.data.slice(start,end).map(function(item, key) {
 						return (
@@ -111,7 +109,8 @@ class Game extends Component {
 		margin: 'auto', 
 		position: 'absolute', 
 		top: 0, left: 0, right: 0, bottom: 0,
-		height: '200px'
+		height: '200px',
+		cursor: 'pointer'
 	  };
 	  var tabsStyle={
 		color: 'black',
@@ -130,9 +129,9 @@ class Game extends Component {
 					</ul>
 				</div>
 				<div style={divStyle} id="crypto">
-					<p className='center-align'><h5>CryptoCoins: {this.state.crypto.money}</h5></p>
+					<h5 className='center-align'>CryptoCoins: {this.state.crypto.money}</h5>
 					<p className='center-align'>{this.state.crypto.pps} / s</p>
-					<img style={imgStyle} src={logo} className="App-logo" alt="logo"/>
+					<img style={imgStyle} src={logo} className="App-logo" alt="logo" href='#'/>
 				</div>
 			</Col>
 			<Col s={6} style={colStyle}>
@@ -166,8 +165,8 @@ class Game extends Component {
 					{this.state.gen.map(function(item, key) {
              
                return (
-                  <Card className='small horizontal blue-grey lighten-5' header={<CardTitle key={item.id} image={gpu} src={gpu} style={{padding:'10px'}}/>} 
-                  actions={[<Button key={item.id} floating tiny style={{backgroundColor: '#F7931A'}} waves='light' icon='add'/>]}>
+                  <Card key={item.id} className='small horizontal blue-grey lighten-5' header={<CardTitle key={item.id} image={gpu} src={gpu} style={{padding:'10px'}}/>} 
+                  actions={[<Button key={item.id} floating style={{backgroundColor: '#F7931A'}} waves='light' icon='add'/>]}>
 							{item.name}<br/>Level: {item.level}<br/>Cost: {item.cost}<br/>pps: {item.producePerSecond}<br/>nlpps: {item.nextLevelProducePerSecond}
 						</Card>
                 )
