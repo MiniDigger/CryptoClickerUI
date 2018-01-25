@@ -3,14 +3,35 @@ import './App.css';
 import logo from './Bitcoin.svg';
 import gpu from './gpu.png';
 
-import {Button, Icon, Col, Input, Row, Tabs, Tab, Card, CardTitle} from 'react-materialize'
+import {Button, Icon, Col, Input, Row, Tabs, Tab, Card, CardTitle, Table} from 'react-materialize'
 import ReactDOM from 'react-dom';
 
 
 class Game extends Component {
 	constructor(props) {
     super(props);
-}
+    this.state = {
+        data: []
+    }
+  }
+	componentDidMount() {
+		fetch("https://api.myjson.com/bins/qzjix", {
+		method: 'GET'
+	})
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({data: result});
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          alert('Dont know');
+        }
+      )
+    
+  }
 
   render() {
 	  var colStyle={
@@ -51,11 +72,25 @@ class Game extends Component {
 				<div className="col s12" style={{padding: "0px"}}>
 					<ul className="tabs z-depth-1 black" style={{display: "inline-grid"}}>
 						<li className="tab col" style={{margin: "auto"}}>
-							<a className="active" style={{color:"white"}}>Highscore</a>
+							<a className="active" href="#highscore" style={{color:"white"}}>Highscore</a>
 						</li>
 						<div className="indicator" style={{right: "279px", left: "0px", backgroundColor:"white"}}></div>
 					</ul>
 				</div>
+				<Table striped centered id="highscore">
+					<thead> <tr> <th>#</th> <th>Name</th> <th>Crypto per Second</th></tr> </thead>
+      <tbody>{this.state.data.map(function(item, key) {
+             
+               return (
+                  <tr key = {key}>
+                      <td>{item.rank}</td>
+                      <td>{item.name}</td>
+                      <td>{item.cryptopersecond}</td>
+                  </tr>
+                )
+             
+             })}</tbody>
+       </Table>
 				<div style={divStyle} id="tab_00">
 					
 				</div>
