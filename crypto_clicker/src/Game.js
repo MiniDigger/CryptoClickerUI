@@ -14,7 +14,8 @@ class Game extends Component {
         data: [],
         gen: [],
         page: 1,
-        entriesPerPage: 10
+        entriesPerPage: 10,
+        crypto: []
     }
     this.setPage = this.setPage.bind(this);
   }
@@ -47,6 +48,21 @@ class Game extends Component {
         // exceptions from actual bugs in components.
         (error) => {
           alert('Generators cannot be loaded');
+        }
+      )
+     fetch("https://api.myjson.com/bins/1gb3vt", {
+		method: 'GET'
+		})
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({crypto: result});
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          alert('Cryptos cannot be loaded');
         }
       )
   }
@@ -114,8 +130,8 @@ class Game extends Component {
 					</ul>
 				</div>
 				<div style={divStyle} id="crypto">
-					<p className='center-align'><h5>test</h5></p>
-					<p className='center-align'>test2</p>
+					<p className='center-align'><h5>CryptoCoins: {this.state.crypto.money}</h5></p>
+					<p className='center-align'>{this.state.crypto.pps} / s</p>
 					<img style={imgStyle} src={logo} className="App-logo" alt="logo"/>
 				</div>
 			</Col>
