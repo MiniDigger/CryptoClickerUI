@@ -17,10 +17,12 @@ class Game extends Component {
       gen: [],
       page: 1,
       entriesPerPage: 10,
-      crypto: []
+      crypto: [],
+      upgrades: []
     }
     
     this.setPage = this.setPage.bind(this);
+    this.handleClickOnDiv = this.handleClickOnDiv.bind(this);
   }
   
 	componentDidMount() {
@@ -69,6 +71,21 @@ class Game extends Component {
           alert('Cryptos cannot be loaded');
         }
       )
+    fetch("https://api.myjson.com/bins/95mq9", {
+			method: 'GET'
+		})
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({upgrades: result});
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          alert('Upgrades cannot be loaded');
+        }
+      )
   }
   
   setPage(i) {
@@ -96,6 +113,10 @@ class Game extends Component {
 				</tbody>
 			</Table>
 		);
+  }
+  
+  handleClickOnDiv() {
+  	console.log("click")
   }
 
   render() {
@@ -176,7 +197,7 @@ class Game extends Component {
 								return (
 									<Card key={item.id} className='small horizontal blue-grey lighten-5' header={<CardTitle key={item.id} image={tImg} src={tImg} style={{padding:'10px'}}/>} 
 									actions={[<Button key={item.id} floating style={{backgroundColor: '#F7931A'}} waves='light' icon='add'/>]}>
-										{item.name}<br/>
+										<b>{item.name}</b><br/>
 										Level: {item.level}<br/>
 										Cost: {item.cost}<br/>
 										pps: {item.producePerSecond}<br/>
@@ -187,7 +208,18 @@ class Game extends Component {
 						</Col>
 					</div>
 					<div id="upgrades">
-						<h1>test</h1>
+						<Col m={12}>
+							{this.state.upgrades.map((item, key) => {
+									return (
+										<div onClick={this.handleClickOnDiv} key={item.id}>
+											<Card key={item.id} className='upgrade small horizontal blue-grey lighten-5' header={<CardTitle key={item.id} image={gpu} src={gpu} style={{padding:'10px'}}/>}>
+												<b>{item.name}</b><br/>
+												{item.description}
+											</Card>
+										</div>
+									)
+							})}
+						</Col>
 					</div>
 				</Col>
 			</Row>

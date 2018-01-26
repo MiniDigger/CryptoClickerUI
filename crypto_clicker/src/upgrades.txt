@@ -1,0 +1,17 @@
+[
+  {
+    "id": 0,
+    "name": "GPU Fan",
+    "description": "GPU mining speed x2"
+  },
+  {
+    "id": 1,
+    "name": "ASIC Water Cooling",
+    "description": "ASIC mining speed x3"
+  },
+  {
+    "id": 2,
+    "name": "Electricity Price reduced",
+    "description": "ALL upgrade cost x0.99"
+  }
+]
