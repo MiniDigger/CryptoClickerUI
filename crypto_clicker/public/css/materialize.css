@@ -4536,6 +4536,10 @@ small {
   max-height: 40%;
 }
 
+.card.horizontal.small .card-image + .card-content, .card.horizontal.medium .card-image + .card-content, .card.horizontal.large .card-image + .card-content {
+  max-height: 100%;
+}
+
 .card.small .card-content, .card.medium .card-content, .card.large .card-content {
   max-height: 100%;
   overflow: inital;
@@ -4586,7 +4590,7 @@ small {
 }
 
 .card.horizontal .card-image {
-  max-width: 50%;
+  max-width: 40%;
 }
 
 .card.horizontal .card-image img {
