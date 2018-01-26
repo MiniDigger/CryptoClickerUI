@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import logo from './Bitcoin.svg';
 import gpu from './gpu.png';
+import asic from './asic.png';
+import server_farm from './server_farm.svg';
 
 import {Button, Icon, Col, Input, Row, Tabs, Tab, Card, CardTitle, Table, Pagination} from 'react-materialize'
 import ReactDOM from 'react-dom';
@@ -17,6 +19,7 @@ class Game extends Component {
       entriesPerPage: 10,
       crypto: []
     }
+    
     this.setPage = this.setPage.bind(this);
   }
   
@@ -108,7 +111,9 @@ class Game extends Component {
 			margin: 'auto', 
 			position: 'absolute', 
 			top: 0, left: 0, right: 0, bottom: 0,
-			height: '200px',
+			height: 'auto',
+			maxHeight: '30%',
+			maxWidth: '90%',
 			cursor: 'pointer'
 	  };
 	  var tabsStyle={
@@ -162,8 +167,14 @@ class Game extends Component {
 					<div id="generatoren">
 						<Col m={12}>
 							{this.state.gen.map(function(item, key) {
+								var tImg={}
+								switch (item.id) {
+						  		case 0: tImg=gpu;break;
+						  		case 1: tImg=asic;break;
+						  		case 2: tImg=server_farm;break;
+						  	}
 								return (
-									<Card key={item.id} className='small horizontal blue-grey lighten-5' header={<CardTitle key={item.id} image={gpu} src={gpu} style={{padding:'10px'}}/>} 
+									<Card key={item.id} className='small horizontal blue-grey lighten-5' header={<CardTitle key={item.id} image={tImg} src={tImg} style={{padding:'10px'}}/>} 
 									actions={[<Button key={item.id} floating style={{backgroundColor: '#F7931A'}} waves='light' icon='add'/>]}>
 										{item.name}<br/>
 										Level: {item.level}<br/>
